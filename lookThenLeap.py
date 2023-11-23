@@ -7,11 +7,11 @@ choices = range(n)
 perms = factorial(n)
 
 # look then leap strategy parameter
-look_period = 7
+look_period = 8
 
-counter, counter2 = 0, 0
+counter, counter2, total_prob = 0, 0, 0
 
-#### brute force calculation #####
+#### brute force calculation that looks at every permutation possibility and counts ones that work #####
 # for each possible ranking, each equally likely, does the the method work out such that the best choice is chosen? if so we'll count it.
 for perm in permutations(choices):
     # starting at the first person after the look window...
@@ -35,13 +35,39 @@ print(f"This strategy results in {counter} successes in {perms} ranking permutat
 for perm in permutations(choices):
     for candidate_i in range(look_period, n):
         if candidate_i == 0 or perm[candidate_i] > max(perm[:candidate_i]):
+            # note: the agent in this look then leap situation does not have access to the final ranking so it can't use this small algorithmic shortcut 
             if perm[candidate_i] == n - 1:
                 counter2 += 1
             break
 
 print(counter2/perms)
 
+def lookThenLeap(n, look_period, total_prob=0):
+    """algebraic probabilities algorithm"""
+    for q_idx in range(look_period, n):
+        term = 1/(q_idx + 1) # prob of decrementing at that period (i.e. being the highest ordinal rank after q_idx observations) 
+        for p_idx in range(look_period, n):
+            if p_idx != q_idx:
+                term *= (1 - 1/(p_idx + 1)) #times prob of survival
+        total_prob += term
+    return total_prob
 
-#### algebraic calculation ####
+test_n = 100
+test_results = []
 
-#### simplified algebraic calculation ####
+for l in range(test_n):
+    test_results.append(lookThenLeap(test_n, l))
+
+print("Now let's try every possible look window from length 0 to the number of choices we have...")
+print()
+print("Does the success probability peak around 37% of the way through the list?")
+print()
+print(test_results)
+print()
+print(f"look_window_arg_index_max for an ordering of size {test_n}: {test_results.index(max(test_results))}")
+print(f"look window percent {test_results.index(max(test_results))/test_n}")
+print()
+print("Is the success probability itself about 37%?")
+print()
+print(f"(success) likelihood (at arg max): {max(test_results)}")
+
