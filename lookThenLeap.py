@@ -52,7 +52,7 @@ def lookThenLeap(n, look_period, total_prob=0):
         total_prob += term
     return total_prob
 
-test_n = 100
+test_n = 30
 test_results = []
 
 for l in range(test_n):

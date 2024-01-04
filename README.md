@@ -5,3 +5,6 @@ lookThenLeap.py relates to a situation where you are only interested in finding 
 you see the objects one at a time. you learn their ordinal relationship to all the objects that have come before them.
 if you look for too long, you may pass over the best of the lot. if you leap too soon, you may not have "explored" enough. 
 (Note: This is not a Bayesian updating exploration but rather the optimal balance in a Platonic object.)
+
+exploreExploit.js has code related to the multi-arm bandit problem. 
+It looks at how variations of "win-stay, lose-switch" strategy perform on slot machines with various win/lose probabiliies.
