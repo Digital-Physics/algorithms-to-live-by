@@ -1,7 +1,7 @@
 # algorithms-to-live-by
-This repository has code related to concepts explored in the book "Algorithms to Live By: The Computer Science of Human Decisions" by Brian Christian and Tom Griffiths. The book was given to me and my wife by my mother (after she read it!).
+This repository has code related to concepts explored in the book "Algorithms to Live By: The Computer Science of Human Decisions" by Brian Christian and Tom Griffiths. 
 
-The goal of this repository is to write at least one piece of code related to each chapter, with each piece of code being in a different language/technology.
+The goal of this repository is to write at least one piece of code related to each chapter, with each piece of code being exploring a different language(or technology in the case of Redis for caching).
 
 Some of the code has notes on how the language's syntax and structure compares with Python (or JavaScript).
 
@@ -34,9 +34,10 @@ This code does MergeSort. In MergeSort, you first break your list down into n se
 
 Chapter 4 "Caching":
 
+brew services start redis
 python Redis_caching.py
 
-This code explores Redis for caching. Redis allows us to save data in key-value form in-memory (so it has fast retrieval, although it can be persisted over time unlike normal in-memory RAM) outside our main web service which makes the main web application stateless (so there's no problem restarting your server as you won't lose data) and easy to scale since the Redis db can be replicated and be made highly available (see Redis Sentinel). Redis caching seems to be most useful when you are dealing with many client sessions where the data they are querying/computing takes a little while to retrieve and the requested data will likely be requested buy that user or another user sometime soon. All queries from the different client sessions can reference the same Redis database, sharing a common cache. To see a Least Recently Used cache where you can appreciate the fundamental data structures, check this code out:
+This code explores Redis for caching. Redis allows us to save data in key-value form in-memory (so it has fast retrieval, although it can be persisted over time unlike normal in-memory RAM) outside our main web service which makes the main web application stateless (so there's no problem restarting your server as you won't lose data) and easy to scale since the Redis db can be replicated and be made highly available (see Redis Sentinel). Redis caching seems to be most useful when you are dealing with many client sessions where the data they are querying/computing takes a little while to retrieve and the requested data will likely be re-requested by that user or another user again soon. All queries from the different client sessions can reference the same Redis database, sharing a common cache. To see details of a Least Recently Used cache with underlying Doubly-linked list and hash table data structure that enables constant time eviction, check this code out:
 
 https://github.com/Digital-Physics/algorithms/blob/main/lru_cache.py
 
@@ -55,7 +56,6 @@ Chapter 10 "Networking":
 Chapter 11 "Game Theory":
 
 Possible future languages:
-
 
 C#
 Haskell
