@@ -3,7 +3,7 @@ This repository has code related to concepts explored in the book "Algorithms to
 
 The goal of this repository is to write at least one piece of code related to each chapter, with each piece of code being in a different language/technology.
 
-A lot of the code has notes on how the language's syntax and structure compares with Python (or JavaScript).
+Some of the code has notes on how the language's syntax and structure compares with Python (or JavaScript).
 
 ![chapter listings](img/IMG_5568.jpg)
 ![chapter listings](img/IMG_5569.jpg)
@@ -30,14 +30,13 @@ Chapter 3 "Sorting":
 "g++ sorting.cpp -o sorting_compiled" or "clang++ -std=c++11 sorting.cpp -o sorting_compiled" to compile it 
 "./sorting_compiled" to run the executable
 
-This code does MergeSort. In MergeSort, you first break your list down into n separate lists. They are sorted singleton lists to start. 
-You then merge sorted lists, which isn't that bad since you can do this in one pass of the lists (linear time). To get n/2 sorted lists for the next round.
+This code does MergeSort. In MergeSort, you first break your list down into n separate lists. They are sorted singleton lists to start. You then merge those sorted lists two at a time (which you can do in one pass of the lists (linear time)) to get n/2 sorted lists for the next recursive call or iteration. The overall time complexity is O(n*log(n))
 
 Chapter 4 "Caching":
 
 python Redis_caching.py
 
-This code explores Redis for caching. Redis allows us to save data in-memory (so it has fast retrieval, although it can be persisted over time unlike normal in-memory RAM) outside our main application. Redis caching seems to be most useful when you are dealing with many client sessions where the data they are querying takes a little while to retrieve and the requested data overlaps between users. All queries from the different client sessions can reference the same Redis database, which makes the application stateless (no problem to restart as you won't lose data) and easy to scale since the Redis db can be replicated and be made highly available (see Redis Sentinel). To see a Least Recently Used cache where you can appreciate the fundamental data structures, check this code out:
+This code explores Redis for caching. Redis allows us to save data in key-value form in-memory (so it has fast retrieval, although it can be persisted over time unlike normal in-memory RAM) outside our main web service which makes the main web application stateless (so there's no problem restarting your server as you won't lose data) and easy to scale since the Redis db can be replicated and be made highly available (see Redis Sentinel). Redis caching seems to be most useful when you are dealing with many client sessions where the data they are querying/computing takes a little while to retrieve and the requested data will likely be requested buy that user or another user sometime soon. All queries from the different client sessions can reference the same Redis database, sharing a common cache. To see a Least Recently Used cache where you can appreciate the fundamental data structures, check this code out:
 
 https://github.com/Digital-Physics/algorithms/blob/main/lru_cache.py
 
