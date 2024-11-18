@@ -57,13 +57,13 @@ def calculate_cumulative_time(load_pairs):
 
 def print_gantt_chart(load_pairs):
     """
-    Print a Gantt chart for wash-dry schedules.
+    Print a Gantt chart info for wash-dry schedules.
 
     Args:
         load_pairs: List of tuples where each tuple is (wash_time, dry_time).
     """
     print("=" * 42)
-    print("              GANTT CHART")
+    print("         Gantt Chart (Info)")
     print("=" * 42)
 
     # Calculate cumulative times

@@ -1,6 +1,15 @@
 (defun find-min-time (load-pairs)
   "Find the load with the minimum wash or dry time in a list of wash-dry pairs.
-   Returns (min-index is-wash), where is-wash is T if the smallest time is a wash time, NIL otherwise."
+   Returns (min-index is-wash), where is-wash is T if the smallest time is a wash time, NIL otherwise.
+
+   Notes: 
+   do is a general-purpose loop construct in Common Lisp. It allows iteration with variables that can change their values during the loop.
+   The loop with two simultaneous for expression ensures we process each load in load-pairs while tracking its index.
+   when is like an if statement without an else branch
+   setf is used to assign values to variables or data structures. It's more powerful than setq, allowing updates to complex data structures like lists, arrays, or hash tables.
+   values returns multiple values while return exits a loop with one value.
+   Without values, you'd need to return a list, tuple, or other structure, which adds unnecessary complexity when the outputs are logically separate.
+"
   (let ((min-time nil)
         (min-index nil)
         (is-wash nil))
@@ -19,10 +28,14 @@
 
 (defun calculate-cumulative-time (load-pairs)
   "Calculate cumulative times for washing and drying.
-  Note: push adds to the front in O(1) (but is destructive and renames variable); it is shorthand for:
+  
+  Notes: 
+  dolist macro iterates over each element of a list, executing a block of code for each element. load here is the var name given to each element.
+  let* binds variables sequentially so later variables can depend on previous variables, while let binds them in parrallel, or at least without consideration.
+  push adds to the front in O(1) (but is destructive and renames variable); it is shorthand for:
         (setf cumulative-times (cons new-element cumulative-times))
-        It is ok to use push here instead of cons because we are iteratively updating it without doing multiple function calls recursively
-  while append traverses entire list to add link to tail O(n)
+        It is ok to use push here instead of cons because we are iteratively updating it without doing multiple function calls recursively.
+  while append traverses entire list to add link to linked list tail (without a pointer) in O(n). (this is why we push and nreverse instead of append)
   "
   (let ((cumulative-times nil)
         (current-wash-end 0)
@@ -47,7 +60,7 @@
 (defun print-gantt-chart (load-pairs)
   "Print a Gantt chart for wash-dry schedules."
   (format t "~%==========================================~%")
-  (format t "              GANTT CHART~%")
+  (format t "           Gantt Chart (Info)~%")
   (format t "==========================================~%")
 
   ;; Calculate cumulative times
@@ -66,8 +79,14 @@
 
 (defun optimize-laundry (loads &optional (start-order '()) (end-order '()))
   "Recursively optimize laundry order by scheduling loads based on the smallest time (wash or dry).
+  
+  Notes:
   We use cons instead of push to put on element on front of list because we use recurssion here. 
-  push mutates a variable. cons in functional and returns new linked list"
+  push mutates a variable. cons in functional and returns new linked list.
+  progn groups multiple expressions into a single block, evaluating them sequentially.
+  multiple-value-bind handles multiple (two) pieces of information returned by find-min-time, the index and the boolean.
+  
+  "
   (if (null loads)
       ;; Base case: Print Gantt chart when all loads are scheduled
       (progn
@@ -86,8 +105,10 @@
 
 (defun remove-if-index (index load_list)
   "Remove the element at INDEX from LIST.
-  Note: unless is like the opposite of an if
-  Note: we don't need to initialize a list with collect and we can construct the new linked list dynamically"
+  Notes: 
+  unless is like the opposite of an if.
+  we don't need to initialize a list with collect and we can construct the new linked list dynamically.
+  "
   (loop for i from 0
         for elem in load_list
         unless (= i index) 

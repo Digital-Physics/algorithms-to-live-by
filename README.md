@@ -1,7 +1,7 @@
 # algorithms-to-live-by
 This repository has code related to concepts explored in the book "Algorithms to Live By: The Computer Science of Human Decisions" by Brian Christian and Tom Griffiths. 
 
-The goal of this repository is to write at least one piece of code related to each chapter, with each piece of code being exploring a different language or technology.
+The goal of this repository is to write at least one piece of code related to each chapter, with each piece of code exploring a different language or technology.
 
 Some of the code has notes on how the language's syntax and structure compares with Python (or JavaScript).
 
@@ -17,7 +17,7 @@ you see the objects one at a time. you learn the current observation's ordinal r
 if you look for too long, you may pass over the best of the lot. if you leap too soon, you may not have "explored" enough. 
 (Note: This is not a Bayesian updating "exploration" but rather the optimal balance in a Platonic math object.)
 
-Chapter 2 "Explore/Exploit" (JavaScript):
+Chapter 2 "Explore/Exploit" (JavaScript)
 
 node exploreExploit.js 
 
@@ -41,7 +41,7 @@ This code explores Redis (REmote DIctionary Server) for caching (and storing/per
 
 https://github.com/Digital-Physics/algorithms/blob/main/lru_cache.py
 
-Chapter 5 "Scheduling" (LISP):
+Chapter 5 "Scheduling" (Common Lisp):
 
 "sbcl --script scheduling.lsp"
 
