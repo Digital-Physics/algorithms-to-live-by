@@ -8,7 +8,7 @@ Some of the code has notes on how the language's syntax and structure compares w
 ![chapter listings](img/IMG_5568.jpg)
 ![chapter listings](img/IMG_5569.jpg)
 
-Chapter 1 "Optimal Stopping" (Pytyhon): 
+Chapter 1 "Optimal Stopping" (Python): 
 
 python lookThenLeap.py 
 
@@ -47,7 +47,18 @@ Chapter 5 "Scheduling" (Common Lisp):
 
 This code schedules laundry loads (where each load has an associated wash time and dry time) to maximize efficient use of a single washer and dryer machine. The goal is to schedule the loads such that you minimize the total run time, which corresponds to maximizing the amount of time both machines are being being made productive at the same time.
 
-Chapter 6 "Bayes's Rule":
+Chapter 6 "Bayes's Rule" (Haskell):
+
+This code simply implements Baye's rule.
+
+"ghc -o bayes Main.hs" to compile it
+"./bayes" to run it
+
+or 
+
+ghci
+Prelude> :load Main.hs
+*Main> bayes 0.01 0.9 0.05
 
 Chapter 7 "Overfitting":
 
