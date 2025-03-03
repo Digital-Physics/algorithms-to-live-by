@@ -47,9 +47,9 @@ Chapter 5 "Scheduling" (Common Lisp):
 
 This code schedules laundry loads (where each load has an associated wash time and dry time) to maximize efficient use of a single washer and dryer machine. The goal is to schedule the loads such that you minimize the total run time, which corresponds to maximizing the amount of time both machines are being being made productive at the same time.
 
-Chapter 6 "Bayes's Rule" (Haskell):
+Chapter 6 "Bayes' Rule" (Haskell):
 
-This code simply implements Baye's rule.
+This code simply implements Bayes's rule.
 
 "ghc -o bayes Main.hs" to compile it
 "./bayes" to run it
